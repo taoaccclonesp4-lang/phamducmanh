@@ -16,3 +16,11 @@
 .lecture-sheet .sheet-footer{position:absolute;bottom:15px;left:52px;right:52px;border-top:1px solid #e3e9e6;padding-top:8px;color:#72817a;font-size:12px;text-align:right}
 @media(max-width:650px){.lesson-article.long-lecture{padding:12px 8px}.lecture-sheet{padding:26px 22px 52px;min-height:690px}.lecture-sheet .sheet-footer{left:22px;right:22px}}
 @media print{.lecture-sheet{page-break-after:always;box-shadow:none;margin:0 auto;border:0}}
+
+/* Giao diện thu gọn: bỏ banner vàng và header lớn, tăng diện tích xem bài giảng. */
+.course-banner .banner-bubble{font-size:10px;letter-spacing:.03em;font-weight:700;white-space:nowrap;background:#ffffff25;border:1px solid #ffffff70;border-radius:4px;padding:5px 8px}
+.layout{height:calc(100vh - 121px);min-height:calc(100vh - 121px)}
+@media(max-width:850px){.layout{height:calc(100vh - 112px);min-height:calc(100vh - 112px)}}
+@media(max-width:620px){.layout{height:calc(100vh - 112px);min-height:calc(100vh - 112px)}.lesson-panel{top:84px;bottom:35px}.banner-bubble{display:none}}
+
+.notice-signature{margin:22px 0 8px;text-align:right;color:#067746;font-weight:700;font-size:16px;line-height:1.8}

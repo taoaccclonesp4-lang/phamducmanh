@@ -86,5 +86,30 @@ if(key==='comment'){
  const questions=[['handsome','Giảng viên Phạm Đức Mạnh có đẹp trai không?',['Có, rất đẹp trai 😎','Đẹp trai theo một cách rất riêng ✨','Để suy nghĩ thêm 🤔']],['couple','Phạm Đức Mạnh và Khánh có đẹp đôi không?',['Có, trông hợp đôi 💚','Có nét dễ thương 😊','Để hai người tự quyết 💬']]];
  questions.forEach(([id,title,choices])=>{const block=e('section','vote-card');block.append(e('h3',null,title));const choicesDiv=e('div','vote-options'),result=e('p','vote-feedback');let saved='';try{saved=localStorage.getItem('lms_demo_vote_'+id)||''}catch(_){}choices.forEach((choice,i)=>{const b=e('button','vote-option'+(String(i)===saved?' chosen':''),choice);b.onclick=()=>{localStorage.setItem('lms_demo_vote_'+id,String(i));choicesDiv.querySelectorAll('button').forEach((n,k)=>n.classList.toggle('chosen',k===i));result.textContent='Bạn chọn: '+choice+' · Đã lưu trên trình duyệt này.'};choicesDiv.append(b)});if(saved!=='')result.textContent='Lựa chọn đã lưu: '+(choices[Number(saved)]||'');block.append(choicesDiv,result);a.append(block)});container.append(a);return true;
 }
-if(key==='members'){a.append(e('h2',null,'Thành viên lớp học'));a.append(e('p',null,'Danh sách thành viên do người sử dụng nhập cho bản mô phỏng; không đồng bộ từ LMS gốc.'));let members=['Phạm Thị Ngọc Khánh','Hoàng Thị Mến','Bùi Ngọc Linh','Phạm Thị Thanh Ngân','Ngô Thị Ngọc','Phạm Ngọc Sơn'];try{const saved=localStorage.getItem('lms_demo_members_v2');if(saved)members=JSON.parse(saved)}catch(_){}const studentIds={'Phạm Thị Ngọc Khánh':'25031477','Hoàng Thị Mến':'25031498','Bùi Ngọc Linh':'25031487','Phạm Thị Thanh Ngân':'25031502','Ngô Thị Ngọc':'25031504','Phạm Ngọc Sơn':'25031520'};const grid=e('div','member-grid');const show=()=>{clear(grid);if(!members.length)grid.append(e('p',null,'Chưa nhập danh sách thành viên.'));members.forEach(name=>{const card=e('div','person');card.append(e('div','avatar',name.split(/\s+/).slice(-2).map(x=>x[0]||'').join('').toUpperCase()),e('h3',null,name),e('small',null,studentIds[name]?'Mã sinh viên: '+studentIds[name]:'Thành viên'));grid.append(card)})};show();a.append(grid,e('h2',null,'Chỉnh sửa danh sách'));const t=e('textarea','member-editor');t.placeholder='Mỗi dòng một thành viên (không bao gồm Phạm Đức Mạnh)';t.value=members.join('\n');const save=e('button','member-save','Lưu danh sách');save.onclick=()=>{members=[...new Set(t.value.split('\n').map(x=>x.trim()).filter(x=>x&&x.toLocaleLowerCase()!=='phạm đức mạnh'))];localStorage.setItem('lms_demo_members_v2',JSON.stringify(members));show()};a.append(t,save);container.append(a);return true}return false};
+if(key==='progress'){
+ a.append(e('h2',null,'Tiến trình học tập của chúng ta'));
+ a.append(e('p',null,'Mỗi buổi học là một bước nhỏ trên hành trình khám phá thế giới số. Từ việc làm quen với máy tính, khai thác thông tin, đến tìm hiểu trí tuệ nhân tạo và sáng tạo nội dung, chúng ta đã cùng nhau tích lũy kiến thức, chia sẻ kinh nghiệm và dần tự tin hơn với công nghệ.'));
+ a.append(e('p',null,'Điều đáng nhớ không chỉ nằm ở những bài tập đã hoàn thành hay số trang tài liệu đã đọc, mà còn là những lần cả nhóm cùng trao đổi, hỗ trợ nhau khi gặp khó khăn và cố gắng đến cùng. Mong rằng mỗi thành viên đều giữ được sự tò mò, tinh thần chủ động và niềm vui học hỏi, dù tiến độ của mỗi người có khác nhau.'));
+ const box=e('div','info-box','Hành trình học tập không phải cuộc đua về đích sớm nhất. Điều quan trọng là hôm nay chúng ta hiểu thêm một điều mới và cùng nhau tiến bộ hơn hôm qua.');a.append(box);
+ a.append(e('p','small-note','Đây là đoạn giới thiệu mang tính động viên trên website mô phỏng, không phải dữ liệu tiến độ học tập được đồng bộ từ LMS VNU.'));
+ container.append(a);return true;
+}
+if(key==='notice'){
+ a.append(e('h2',null,'Một lời nhắn gửi đến các thành viên 💚'));
+ a.append(e('p',null,'Gửi Khánh, Mến, Linh, Ngân, Ngọc và Sơn,'));
+ a.append(e('p',null,'Có lẽ điều làm cho một lớp học trở nên đáng nhớ không chỉ là những kiến thức chúng ta tiếp thu, mà còn là những con người đã cùng xuất hiện trong quãng thời gian ấy. Mỗi người có một tính cách, một cách suy nghĩ, một nhịp sống riêng, nhưng thật vui vì chúng ta đã có dịp gặp gỡ, học tập và chia sẻ cùng nhau.'));
+ a.append(e('p',null,'Cảm ơn mọi người vì những cuộc trò chuyện, những lần giúp đỡ dù nhỏ, những tiếng cười và cả những lúc cùng nhau xoay xở với bài tập. Có thể sau này mỗi người sẽ bước trên một con đường khác nhau, nhưng mình mong khi nhớ lại khoảng thời gian này, chúng ta vẫn sẽ mỉm cười vì đã từng đồng hành.'));
+ a.append(e('p',null,'Chúc tất cả luôn bình an, học tốt, dám theo đuổi điều mình thích và gặp thật nhiều điều tử tế. Hy vọng chúng ta sẽ tiếp tục trân trọng, động viên và dành cho nhau những kỷ niệm thật đẹp.'));
+ const ending=e('p','notice-signature','Thân gửi,\nPhạm Đức Mạnh');ending.style.whiteSpace='pre-line';a.append(ending);
+ a.append(e('p','small-note','Lời nhắn cá nhân trên website mô phỏng; không phải thông báo chính thức của nhà trường.'));
+ container.append(a);return true;
+}
+if(key==='members'){
+ a.append(e('h2',null,'Thành viên lớp học'));
+ a.append(e('p',null,'Danh sách thành viên được cố định trong mã nguồn của trang mô phỏng, không có chức năng chỉnh sửa trên giao diện.'));
+ const members=[['Phạm Thị Ngọc Khánh','25031477'],['Hoàng Thị Mến','25031498'],['Bùi Ngọc Linh','25031487'],['Phạm Thị Thanh Ngân','25031502'],['Ngô Thị Ngọc','25031504'],['Phạm Ngọc Sơn','25031520']];
+ const grid=e('div','member-grid');members.forEach(([name,id])=>{const card=e('div','person');card.append(e('div','avatar',name.split(/\s+/).slice(-2).map(x=>x[0]||'').join('').toUpperCase()),e('h3',null,name),e('small',null,'Mã sinh viên: '+id));grid.append(card)});
+ a.append(grid);container.append(a);return true;
+}
+return false};
 })();

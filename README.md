@@ -14,3 +14,14 @@ Bản website độc lập phục vụ học tập, không phải LMS chính th�
 Giải nén toàn bộ ZIP, mở `index.html` trong trình duyệt. Đưa tất cả các file trong cùng một thư mục lên nhánh chính GitHub Pages.
 
 Không nhập mật khẩu của hệ thống chính thức vào trang mô phỏng. Không đồng bộ dữ liệu LMS.
+
+
+## Cập nhật giao diện thu gọn
+Đã bỏ phần banner cảnh báo màu vàng và khối đầu trang lớn. Nhãn “BẢN MÔ PHỎNG” chuyển sang thanh xanh để tránh gây nhầm với trang LMS chính thức. Khung đọc bài giảng được tăng chiều cao.
+
+
+## Cập nhật giao diện
+- Mục Thành viên cố định sáu tên và mã sinh viên trong `lesson-ui.js`, không có ô nhập hay nút lưu; không sử dụng dữ liệu danh sách đã lưu từ phiên bản cũ.
+- Mục Thông báo có lời nhắn gửi tình cảm đến sáu thành viên.
+- Mục Tiến trình học tập có đoạn chia sẻ tự biên soạn, không mô phỏng số liệu tiến độ thật.
+- Đây là website tĩnh: không có giao diện chỉnh sửa cho khách truy cập, nhưng người có quyền sửa repository GitHub vẫn có thể sửa mã nguồn.
